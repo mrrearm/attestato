@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attestato</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+    body {
+      margin: 0;
+      background-color: #f7f4ef;
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+    }
+    canvas {
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 30px 50px;
+      font-size: 45px;
+      background-color: #d4af37;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="attestatoCanvas" width="1123" height="794"></canvas>
+  <br />
+  <button onclick="scarica()">Scarica Attestato</button>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const nome = urlParams.get("nome");
+
+    const canvas = document.getElementById("attestatoCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const img = new Image();
+    img.onload = function () {
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      document.fonts.ready.then(() => {
+        ctx.font = "bold 70px 'Dancing Script', cursive";
+        ctx.fillStyle = "#000";
+        ctx.textAlign = "center";
+        ctx.fillText(nome, canvas.width / 2 + 125, 425);
+      });
+    };
+    img.src = "attestato.png";
+
+    function scarica() {
+      const link = document.createElement("a");
+      link.download = "attestato_" + nome + ".png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generatore Attestato</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f4ef;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    input[type="text"] {
+      font-size: 40px;
+      padding: 40px;
+      width: 300px;
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      font-family: 'Dancing Script', cursive;
+    }
+    button {
+      font-size: 40px;
+      padding: 30px 50px;
+      background-color: #d4af37;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      margin-left: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>Genera Attestato Kamira's Professionist</h1>
+  <input id="nome" type="text" placeholder="Inserisci il nome" />
+  <button onclick="generaAttestato()">Produci Attestato</button>
+
+  <script>
+    function generaAttestato() {
+      const nome = document.getElementById('nome').value.trim();
+      if (!nome) {
+        alert('Per favore, inserisci un nome.');
+        return;
+      }
+      window.open('attestato.html?nome=' + encodeURIComponent(nome), '_blank');
+    }
+  </script>
+</body>
+</html>
